@@ -6,26 +6,18 @@ namespace REC_95
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите координату Х вершины А ");
-            var x1 = int.Parse(Console.ReadLine());
-            Console.WriteLine("Введите координату Y вершины А ");
-            var y1 = int.Parse(Console.ReadLine());
-            Console.WriteLine("Введите координату Х вершины B ");
-            var x2 = int.Parse(Console.ReadLine());
-            Console.WriteLine("Введите координату Y вершины B ");
-            var y2 = int.Parse(Console.ReadLine());
-            Console.WriteLine("Введите координату Х вершины C ");
-            var x3 = int.Parse(Console.ReadLine());
-            Console.WriteLine("Введите координату Y вершины C ");
-            var y3 = int.Parse(Console.ReadLine());
-            Point a = new Point(x1, y1);
-            Point b = new Point(x2, y2);
-            Point c = new Point(x3, y3);
-            Triangle Triangle0 = new Triangle(a, b, c);
-            Triangle0.showPoints();
-            Triangle0.showSides();
-            Triangle0.showPerimetr();
-            Triangle0.showArea();
+            Triangle T = new Triangle();
+
+            T.A.X = 1;
+            T.A.Y = 1;
+            T.B.X = 5;
+            T.B.Y = 1;
+            T.C.X = 3;
+            T.C.Y = 5;
+
+            Console.WriteLine($"Вершины: {T.GetPoints(T.A, T.B, T.C)}\n");
+            Console.WriteLine($"Периметр: {T.GetPerimetr(T.A, T.B, T.C)}\n");
+            Console.WriteLine($"Площадь: {T.GetArea(T.A, T.B, T.C)}\n");
             Console.ReadKey();
         }
     }

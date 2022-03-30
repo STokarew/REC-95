@@ -8,48 +8,38 @@ namespace REC_95
 {
     class Triangle
     {
-        public Point A { set; get; }
-        public Point B { set; get; }
-        public Point C { set; get; }
+        internal Point A { get; set; } = new Point();
+        internal Point B { get; set; } = new Point();
+        internal Point C { get; set; } = new Point();
 
-        public Double AB;
-        public Double BC;
-        public Double CA;
-        public Double P;
-        public Double S;
-
-        public Triangle(Point a, Point b, Point c)
+        internal string GetPoints(Point a, Point b, Point c)
         {
             A = a;
             B = b;
             C = c;
-            AB = Math.Sqrt(Math.Pow((B.X - A.X), 2) + Math.Pow((B.Y - A.Y), 2));
-            BC = Math.Sqrt(Math.Pow((C.X - B.X), 2) + Math.Pow((C.Y - B.Y), 2));
-            CA = Math.Sqrt(Math.Pow((A.X - C.X), 2) + Math.Pow((A.Y - C.Y), 2));
-            P = (AB + BC + CA);
-            S = Math.Sqrt(P / 2 * (P / 2 - AB) * (P / 2 - BC) * (P / 2 - CA));/* формула герона*/
-
-            if ((AB >= BC + CA) | (BC >= AB + CA) | (CA >= AB + BC))
-            {
-                throw new ArgumentNullException(nameof(Triangle));
-            }
+            string str = "A("+ A.X+","+A.Y+") B(" + B.X + "," + B.Y + ") C("+ C.X+", "+C.Y+")";
+            return str;
         }
-        public void showPoints()
+        private double GetSide(Point a, Point b)
         {
-            Console.WriteLine($"\nA({A.X},{A.Y})\nB({B.X},{B.Y})\nC({C.X},{C.Y})\n");
+            A = a;
+            B = b;
+            double AB = Math.Sqrt(Math.Pow((B.X - A.X), 2) + Math.Pow((B.Y - A.Y), 2));
+            return AB;
         }
-        public void showSides()
+        internal double GetPerimetr(Point a, Point b, Point c)
         {
-            Console.WriteLine($"AB = {AB}\nBC = {BC}\nCA = {CA}\n");
+            A = a;
+            B = b;
+            C = c;
+            double P = (GetSide(A,B) + GetSide(B, C) + GetSide(C, A));
+            return P;
         }
-        public void showPerimetr()
+        internal double GetArea(Point a, Point b, Point c)
         {
-            Console.WriteLine($"P = {P}\n");
+            double S = Math.Sqrt(GetPerimetr(A, B, C) / 2 * (GetPerimetr(A, B, C) / 2 - GetSide(A, B)) * (GetPerimetr(A, B, C) / 2 - GetSide(B, C)) * (GetPerimetr(A, B, C) / 2 - GetSide(C, A)));
+            return S;
         }
-        public void showArea()
-        {
-            Console.WriteLine($"S = {S}");
-        }
+           
     }
-
 }
