@@ -21,7 +21,7 @@ namespace REC_95
         {
             A = a;
             B = b;
-            double AB = Math.Sqrt(Math.Pow((B.X - A.X), 2) + Math.Pow((B.Y - A.Y), 2));
+            var AB = Math.Sqrt(Math.Pow((B.X - A.X), 2) + Math.Pow((B.Y - A.Y), 2));
             return AB;
         }
 
@@ -30,13 +30,13 @@ namespace REC_95
             A = a;
             B = b;
             C = c;
-            double P = (GetSide(A,B) + GetSide(B, C) + GetSide(C, A));
+            var P = (GetSide(A,B) + GetSide(B, C) + GetSide(C, A));
             return P;
         }
 
         internal double GetArea(Point a, Point b, Point c)
         {
-            double S = Math.Sqrt(GetPerimetr(A, B, C) / 2
+            var S = Math.Sqrt(GetPerimetr(A, B, C) / 2
                 * (GetPerimetr(A, B, C) / 2 - GetSide(A, B))
                 * (GetPerimetr(A, B, C) / 2 - GetSide(B, C))
                 * (GetPerimetr(A, B, C) / 2 - GetSide(C, A)));
