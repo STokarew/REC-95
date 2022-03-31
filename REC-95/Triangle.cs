@@ -30,7 +30,7 @@ namespace REC_95
             A = a;
             B = b;
             C = c;
-            var P = (GetSide(A,B) + GetSide(B, C) + GetSide(C, A));
+            var P = (GetSide(A, B) + GetSide(B, C) + GetSide(C, A));
             return P;
         }
 
@@ -42,6 +42,6 @@ namespace REC_95
                 * (GetPerimetr(A, B, C) / 2 - GetSide(C, A)));
             return S;
         }
-           
+
     }
 }
