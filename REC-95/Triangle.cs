@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace REC_95
 {
@@ -17,9 +13,10 @@ namespace REC_95
             A = a;
             B = b;
             C = c;
-            string str = "A("+ A.X+","+A.Y+") B(" + B.X + "," + B.Y + ") C("+ C.X+", "+C.Y+")";
+            var str = $"A({A.X},{A.Y}) B({B.X},{B.Y}) C({C.X}, {C.Y})";
             return str;
         }
+
         private double GetSide(Point a, Point b)
         {
             A = a;
@@ -27,6 +24,7 @@ namespace REC_95
             double AB = Math.Sqrt(Math.Pow((B.X - A.X), 2) + Math.Pow((B.Y - A.Y), 2));
             return AB;
         }
+
         internal double GetPerimetr(Point a, Point b, Point c)
         {
             A = a;
@@ -35,9 +33,13 @@ namespace REC_95
             double P = (GetSide(A,B) + GetSide(B, C) + GetSide(C, A));
             return P;
         }
+
         internal double GetArea(Point a, Point b, Point c)
         {
-            double S = Math.Sqrt(GetPerimetr(A, B, C) / 2 * (GetPerimetr(A, B, C) / 2 - GetSide(A, B)) * (GetPerimetr(A, B, C) / 2 - GetSide(B, C)) * (GetPerimetr(A, B, C) / 2 - GetSide(C, A)));
+            double S = Math.Sqrt(GetPerimetr(A, B, C) / 2
+                * (GetPerimetr(A, B, C) / 2 - GetSide(A, B))
+                * (GetPerimetr(A, B, C) / 2 - GetSide(B, C))
+                * (GetPerimetr(A, B, C) / 2 - GetSide(C, A)));
             return S;
         }
            
