@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace REC_95
 {
-    class Point
+    internal class Point
     {
-        internal double X { get; set; }
-        internal double Y { get; set; }
+        public double X { get; init; }
+        public double Y { get; init; }
+        public Point(double x, double y)
+        {
+            X = x;
+            Y = y;
+        }
     }
-
 }

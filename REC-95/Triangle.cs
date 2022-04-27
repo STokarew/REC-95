@@ -2,46 +2,48 @@
 
 namespace REC_95
 {
-    class Triangle
+    internal class Triangle
     {
-        internal Point A { get; set; } = new Point();
-        internal Point B { get; set; } = new Point();
-        internal Point C { get; set; } = new Point();
+        private readonly Point _a;
+        private readonly Point _b;
+        private readonly Point _c;
 
-        internal string GetPoints(Point a, Point b, Point c)
+        public Triangle(Point a, Point b, Point c)
         {
-            A = a;
-            B = b;
-            C = c;
-            var str = $"A({A.X},{A.Y}) B({B.X},{B.Y}) C({C.X}, {C.Y})";
-            return str;
+            _a = a;
+            _b = b;
+            _c = c;
         }
 
-        private double GetSide(Point a, Point b)
+        public string GetPoints()
         {
-            A = a;
-            B = b;
-            var AB = Math.Sqrt(Math.Pow((B.X - A.X), 2) + Math.Pow((B.Y - A.Y), 2));
-            return AB;
+            return $"A({_a.X},{_a.Y}) B({_b.X},{_b.Y}) C({_c.X}, {_c.Y})";
         }
 
-        internal double GetPerimetr(Point a, Point b, Point c)
+        public double GetPerimetr(Point _a, Point _b, Point _c)
         {
-            A = a;
-            B = b;
-            C = c;
-            var P = (GetSide(A, B) + GetSide(B, C) + GetSide(C, A));
-            return P;
+            var perimetr =
+               (SideLength(_a, _b) + SideLength(_b, _c) + SideLength(_c, _a));
+            return perimetr;
         }
 
-        internal double GetArea(Point a, Point b, Point c)
+        public double GetArea()
         {
-            var S = Math.Sqrt(GetPerimetr(A, B, C) / 2
-                * (GetPerimetr(A, B, C) / 2 - GetSide(A, B))
-                * (GetPerimetr(A, B, C) / 2 - GetSide(B, C))
-                * (GetPerimetr(A, B, C) / 2 - GetSide(C, A)));
-            return S;
+            // не проверял верность формулы
+            var halfPerimetr = GetPerimetr(_a, _b, _c) / 2;
+            var area = Math.Sqrt(halfPerimetr
+                * (halfPerimetr - SideLength(_a, _b))
+                * (halfPerimetr - SideLength(_b, _c))
+                * (halfPerimetr - SideLength(_c, _a)));
+            return area;
         }
 
+        private double SideLength(Point a, Point b)
+        {
+            // не проверял верность формулы
+            var abLength = Math.Sqrt(
+               Math.Pow((b.X - a.X), 2) + Math.Pow((b.Y - a.Y), 2));
+            return abLength;
+        }
     }
 }

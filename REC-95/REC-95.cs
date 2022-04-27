@@ -6,18 +6,15 @@ namespace REC_95
     {
         static void Main(string[] args)
         {
-            Triangle triangle = new Triangle();
+            var pointA = new Point(1, 1);
+            var pointB = new Point(5, 1);
+            var pointC = new Point(3, 5);
 
-            triangle.A.X = 1;
-            triangle.A.Y = 1;
-            triangle.B.X = 5;
-            triangle.B.Y = 1;
-            triangle.C.X = 3;
-            triangle.C.Y = 5;
+            var triangle = new Triangle(pointA, pointB, pointC);
 
-            Console.WriteLine($"Вершины: {triangle.GetPoints(triangle.A, triangle.B, triangle.C)}\n");
-            Console.WriteLine($"Периметр: {triangle.GetPerimetr(triangle.A, triangle.B, triangle.C)}\n");
-            Console.WriteLine($"Площадь: {triangle.GetArea(triangle.A, triangle.B, triangle.C)}\n");
+            Console.WriteLine($"Вершины: {triangle.GetPoints()}");
+            Console.WriteLine($"Периметр: {triangle.GetPerimetr(pointA, pointB, pointC)}");
+            Console.WriteLine($"Площадь: {triangle.GetArea()}");
             Console.ReadKey();
         }
     }
